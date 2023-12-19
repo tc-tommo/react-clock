@@ -41,16 +41,19 @@ code {
 }
 
 #tomorrow {
+  color : #fffa;
+}
+
+#thisweek {
   color : #fff8;
 }
 
 #nextweek {
-  color : #fff4;
+  color : #fff2;
 }
 
 
-
-.nextweek li {
+li {
   display: list-item;
 }
 

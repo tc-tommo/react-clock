@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { upcomingToday, upcomingTomorrow, upcomingNextWeek } from './icsParser';
+import { upcomingToday, upcomingTomorrow, upcomingNextWeek, upcomingThisWeek, getEvents } from './icsParser';
 
 import React, { useState, useEffect } from 'react';
 
@@ -31,13 +31,19 @@ const analytics = getAnalytics(app);
 function App() {
 
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  useEffect(() => {
+    fetch('./socials.ics')
+      .then(response => response.text())
+      .then(data => getEvents(data))
+      .catch(error => console.error('Error loading ics file:', error));
+  }, []);
 
   useEffect(
     () => {
       const timer = setInterval(() => {
         setCurrentTime(new Date().toLocaleTimeString())
         
-
+      
       }, 1000);
       return () => {
         clearInterval(timer)
@@ -45,6 +51,23 @@ function App() {
     },
     []
   );
+
+  function formatEventSummary(events, fuzzytime) {
+    if (events.length > 0) {
+      return (
+        <div id={fuzzytime}>
+          <h2>{fuzzytime}</h2>
+          {events.map(event => (
+            <p key={event.start}>
+              {event.summary}
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+
+  }
   
   return (
     <div className="App">
@@ -52,28 +75,16 @@ function App() {
       <div id="clock">{currentTime}</div>
       <div id="events">
       <div id="today">
-      <h2>Today</h2>
-        {upcomingToday().map(event => (
-            <li key={event.start}>
-              {event.summary}
-            </li>
-          ))}
+      {formatEventSummary(upcomingToday(), "Today")}
       </div>
       <div id="tomorrow">
-      <h2>Tomorrow</h2>
-      {upcomingTomorrow().map(event => (
-          <li key={event.start}>
-            {event.summary}
-          </li>
-        ))}
+      {formatEventSummary(upcomingTomorrow(), "Tomorrow")}
+      </div>
+      <div id="thisweek">
+      {formatEventSummary(upcomingThisWeek(), "This Week")}
       </div>
       <div id="nextweek">
-      <h2>Next Week</h2>
-      {upcomingNextWeek().map(event => (
-          <li key={event.start}>
-            {event.summary}
-          </li>
-        ))}
+      {formatEventSummary(upcomingNextWeek(), "Next Week")}
       </div>
     </div>
 
