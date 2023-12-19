@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { upcomingToday, upcomingTomorrow, upcomingNextWeek } from './icsParser';
 
 import React, { useState, useEffect } from 'react';
 
@@ -35,6 +36,8 @@ function App() {
     () => {
       const timer = setInterval(() => {
         setCurrentTime(new Date().toLocaleTimeString())
+        
+
       }, 1000);
       return () => {
         clearInterval(timer)
@@ -43,13 +46,38 @@ function App() {
     []
   );
   
-
-
   return (
     <div className="App">
       <h1>Welcome to Gymnastics!</h1>
       <div id="clock">{currentTime}</div>
+      <div id="events">
+      <div id="today">
+      <h2>Today</h2>
+        {upcomingToday().map(event => (
+            <li key={event.start}>
+              {event.summary}
+            </li>
+          ))}
+      </div>
+      <div id="tomorrow">
+      <h2>Tomorrow</h2>
+      {upcomingTomorrow().map(event => (
+          <li key={event.start}>
+            {event.summary}
+          </li>
+        ))}
+      </div>
+      <div id="nextweek">
+      <h2>Next Week</h2>
+      {upcomingNextWeek().map(event => (
+          <li key={event.start}>
+            {event.summary}
+          </li>
+        ))}
+      </div>
     </div>
+
+  </div>
   );
 }
 

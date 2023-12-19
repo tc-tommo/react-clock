@@ -23,14 +23,43 @@ code {
   font-size: 5em;
   font-weight: bold;
   font-family: 'DM Mono', sans-serif;
+  background-color: #3A1C71;
+  border-radius: 10px;
+  width: 448px;
+  margin: auto;
+}
+
+
+#events {
+  overflow: hidden;
+  color: linear-gradient(to bottom, #FFAF7B, #D76D77, #3A1C71);
+  line-height: 0.8em;
+}
+
+#today {
+  color : white;
+}
+
+#tomorrow {
+  color : #fff8;
+}
+
+#nextweek {
+  color : #fff4;
+}
+
+
+
+.nextweek li {
+  display: list-item;
 }
 
 
 
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  top: 30vh;
   height: 100vh;
 }
 
@@ -38,6 +67,7 @@ code {
 body {
   margin: 0;
   font-family: 'Nexa Bold', sans-serif;
+  font-weight: 200;
 }
 
 
