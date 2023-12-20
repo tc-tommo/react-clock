@@ -57,9 +57,10 @@ export function upcomingThisWeek() {
     const thisWeekStart = new Date();
     // truncate to midnight
     thisWeekStart.setHours(0, 0, 0, 0);
-    thisWeekStart.setDate(thisWeekStart.getDate() + 2);
+    const startDate = thisWeekStart.getDate();
+    thisWeekStart.setDate(startDate + 2);
     const thisWeekEnd = new Date(thisWeekStart);
-    thisWeekEnd.setDate(thisWeekEnd.getDate() + 7);
+    thisWeekEnd.setDate(startDate + 7);
     return getEventsFromRange(thisWeekStart, thisWeekEnd);
 }
 

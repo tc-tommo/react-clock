@@ -52,6 +52,21 @@ function App() {
     []
   );
 
+  function formatCurrentTime(currentTime) {
+    // split into hours, minutes, seconds
+    const [hours, minutes, seconds] = currentTime.split(":");
+    
+    return (
+      <div id="time">
+        <span id="hours">{hours}</span>
+        :
+        <span id="minutes">{minutes}</span>
+        :
+        <span id="seconds">{seconds}</span>
+      </div>
+    );
+  }
+
   function formatEventSummary(events, fuzzytime) {
     if (events.length > 0) {
       return (
@@ -72,7 +87,7 @@ function App() {
   return (
     <div className="App">
       <h1>Welcome to Gymnastics!</h1>
-      <div id="clock">{currentTime}</div>
+      <div id="clock">{formatCurrentTime(currentTime)}</div>
       <div id="events">
       <div id="today">
       {formatEventSummary(upcomingToday(), "Today")}
