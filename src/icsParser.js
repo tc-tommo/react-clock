@@ -1,11 +1,36 @@
 
 import * as ical from 'ical.js';
 
-// TODO: Pull ics from google calendar or something
 
-var allEvents = [];
+const GIST_URL = "https://gist.githubusercontent.com/tc-tommo/f190f6e997f61982c36b794060a99f7f/raw/"
+
+function getIcsData(url) {
+    
+    return fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            return data;
+        });
+}
+
+// read the ics file from the gist into allEvents
+// if error, log and allEvents = []
+let allEvents = [];
+
+getIcsData(GIST_URL)
+    .then(data => {
+        console.log(data);
+        allEvents = getEvents(data);
+    })
+    .catch(err => {
+        console.log(err);
+        allEvents = [];
+    });
 
 export function getEvents(icsData) {
+    if (!icsData) {
+        return [];
+    }
     const data = icsData;
     const jcalData  = ical.parse(data);
 
@@ -13,7 +38,7 @@ export function getEvents(icsData) {
 
     const vevents = comp.getAllSubcomponents("vevent");
 
-    allEvents = vevents.map(vevent => {
+    return vevents.map(vevent => {
         const event = new ical.Event(vevent);
         return {
             summary: event.summary,

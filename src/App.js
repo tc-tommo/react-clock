@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { upcomingToday, upcomingTomorrow, upcomingNextWeek, upcomingThisWeek, getEvents } from './icsParser';
 
@@ -67,11 +66,11 @@ function App() {
     );
   }
 
-  function formatEventSummary(events, fuzzytime) {
+  function formatEventSummary(events, timecategory) {
     if (events.length > 0) {
       return (
-        <div id={fuzzytime}>
-          <h2>{fuzzytime}</h2>
+        <div id={timecategory}>
+          <h2>{timecategory}</h2>
           {events.map(event => (
             <p key={event.start}>
               {event.summary}
