@@ -85,7 +85,9 @@ export function upcomingThisWeek() {
     const startDate = thisWeekStart.getDate();
     thisWeekStart.setDate(startDate + 2);
     const thisWeekEnd = new Date(thisWeekStart);
-    thisWeekEnd.setDate(startDate + 7);
+    // set to sunday of this week
+    const daysUntilSunday = 7 - thisWeekEnd.getDay();
+    thisWeekEnd.setDate(thisWeekEnd.getDate() + daysUntilSunday);
     return getEventsFromRange(thisWeekStart, thisWeekEnd);
 }
 
@@ -93,7 +95,8 @@ export function upcomingNextWeek() {
     const nextWeekStart = new Date();
     // truncate to midnight
     nextWeekStart.setHours(0, 0, 0, 0);
-    nextWeekStart.setDate(nextWeekStart.getDate() + 7);
+    const daysUntilMonday = 8 - nextWeekStart.getDay();
+    nextWeekStart.setDate(nextWeekStart.getDate() + daysUntilMonday);
     const nextWeekEnd = new Date(nextWeekStart);
     nextWeekEnd.setDate(nextWeekEnd.getDate() + 7);
     return getEventsFromRange(nextWeekStart, nextWeekEnd);
