@@ -26,7 +26,7 @@ code {
   background-color: #000a;
   border-radius: 10px;
   width: 448px;
-  margin: auto;
+  margin: 20px auto;
 }
 
 #hours, #minutes {
@@ -50,6 +50,7 @@ code {
 p {
   font-size: 1.3em;
 }
+
 
 #today {
   color : white;
