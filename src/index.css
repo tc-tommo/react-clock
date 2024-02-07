@@ -47,20 +47,24 @@ code {
   line-height: 0.8em;
 }
 
+p {
+  font-size: 1.3em;
+}
+
 #today {
   color : white;
 }
 
 #tomorrow {
-  color : #fffa;
+  color : #fffd;
 }
 
 #thisweek {
-  color : #fff8;
+  color : #fffa;
 }
 
 #nextweek {
-  color : #fff2;
+  color : #fff8;
 }
 
 

@@ -88,21 +88,20 @@ function App() {
       <h1>Welcome to Gymnastics!</h1>
       <div id="clock">{formatCurrentTime(currentTime)}</div>
       <div id="events">
-      <div id="today">
-      {formatEventSummary(upcomingToday(), "Today")}
-      </div>
-      <div id="tomorrow">
-      {formatEventSummary(upcomingTomorrow(), "Tomorrow")}
-      </div>
-      <div id="thisweek">
-      {formatEventSummary(upcomingThisWeek(), "This Week")}
-      </div>
-      <div id="nextweek">
-      {formatEventSummary(upcomingNextWeek(), "Next Week")}
+        <div id="today">
+        {formatEventSummary(upcomingToday(), "Today")}
+        </div>
+        <div id="tomorrow">
+        {formatEventSummary(upcomingTomorrow(), "Tomorrow")}
+        </div>
+        <div id="thisweek">
+        {formatEventSummary(upcomingThisWeek(), "This Week")}
+        </div>
+        <div id="nextweek">
+        {formatEventSummary(upcomingNextWeek(), "Next Week")}
+        </div>
       </div>
     </div>
-
-  </div>
   );
 }
 

@@ -84,13 +84,6 @@ export function upcomingThisWeek() {
     thisWeekStart.setHours(0, 0, 0, 0);
     const startDate = thisWeekStart.getDate();
     const thisWeekEnd = new Date(thisWeekStart);
-    // if tomorrow is sunday, return empty array
-    if (thisWeekStart.getDay() >= 5) {
-        return [];
-    }
-
-    thisWeekStart.setDate(startDate + 2);
-    
     // set to sunday of this week
     const daysUntilSunday = 7 - thisWeekStart.getDay();
     thisWeekEnd.setDate(thisWeekEnd.getDate() + daysUntilSunday);
